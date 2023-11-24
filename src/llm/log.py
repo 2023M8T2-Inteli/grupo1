@@ -15,7 +15,14 @@ log = {
 #    return str(dt_string)
 
 def getUserPrompt(prompt):
-    return print(prompt)
+    count = len(log)
+    updateLog = {
+        count: {
+            'user-prompt': prompt
+        }
+    }
+    log.update(updateLog)
+    return log
 
 
 def getSysResponse(response):
@@ -26,4 +33,4 @@ def getSysResponse(response):
         }
     }
     log.update(updateLog)
-    return log
+    return print(log)

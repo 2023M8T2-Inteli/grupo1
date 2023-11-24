@@ -7,12 +7,9 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import Chroma
 
 from item_re_return import item_feedback
-<<<<<<< Updated upstream
 import os
 
-=======
 from log import getSysResponse, getUserPrompt
->>>>>>> Stashed changes
 
 # load the document and split it into chunks
 loader = TextLoader("./items.txt")
@@ -46,6 +43,7 @@ chain = (
     | model
 )
 text = ""
+userInput = input()
 for s in chain.stream("Torata onde está?"):
     # print(text, end="", flush=True)
     text+=s
@@ -60,5 +58,7 @@ print(text.removesuffix("<|im_end|>"))
 with open('output.txt', 'w') as f:
     f.write(text.removesuffix("<|im_end|>"))
 
+
+getUserPrompt(userInput)
 #log de resposta do llm
 getSysResponse(text.removesuffix("<|im_end|>"))
