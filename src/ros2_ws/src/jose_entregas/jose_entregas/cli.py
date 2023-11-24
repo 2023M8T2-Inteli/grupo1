@@ -70,8 +70,8 @@ def main():
 
         nav.goToPose(goal_pose)
         while not nav.isTaskComplete():
-            # print(nav.getFeedback())
-            # print(nav.get_clock().now().to_msg().sec)
+            print(nav.getFeedback())
+            print(nav.get_clock().now().to_msg().sec)
             pass
         nav.get_logger().info('reached  point ' + str(positions))
 
