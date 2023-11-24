@@ -7,12 +7,12 @@ from teste import msg
 import re
 
 
-def create_pose_stamped( pos_x, pos_y, rot_z,nav):
+def create_pose_stamped(pos_x, pos_y, rot_z, nav):
     q_x, q_y, q_z, q_w = quaternion_from_euler(0.0, 0.0, rot_z)
     pose = PoseStamped()
     pose.header.frame_id = 'map'
     pose.header.stamp = nav.get_clock().now().to_msg()
-     
+
     pose.pose.position.x = pos_x
     pose.pose.position.y = pos_y
     pose.pose.position.z = pos_x
@@ -22,8 +22,11 @@ def create_pose_stamped( pos_x, pos_y, rot_z,nav):
     pose.pose.orientation.w = q_w
     return pose
 
+
 def getCoordinates(text):
-    matches = re.findall(r'[+-]?\d+(?:\.\d+)?', text)
+    print(text.content)
+    matches = re.findall(r'[+-]?\d+(?:\.\d+)?', text.content)
+   
     if len(matches) >= 2:
         first_two_numbers = matches[:2]
         first_two_numbers[0] = float(first_two_numbers[0])
@@ -31,6 +34,7 @@ def getCoordinates(text):
         return first_two_numbers
     else:
         return None
+
 
 def main():
     rclpy.init()
@@ -51,7 +55,7 @@ def main():
     nav.waitUntilNav2Active()
 
     while True:
-        
+
         input_text = input("Enter a command: ")
         if input_text == "exit":
             break
@@ -60,10 +64,7 @@ def main():
             print("Invalid command")
             continue
 
-        goal_pose = create_pose_stamped(positions[0], positions[1], 0.0,nav)
-
-        
-        
+        goal_pose = create_pose_stamped(positions[0], positions[1], 0.0, nav)
 
         nav.goToPose(goal_pose)
         while not nav.isTaskComplete():
@@ -72,7 +73,8 @@ def main():
             pass
         nav.get_logger().info('reached  point ' + str(positions))
 
-    rclpy.shutdown()
+        rclpy.shutdown()
+
 
 if __name__ == '__main__':
 
