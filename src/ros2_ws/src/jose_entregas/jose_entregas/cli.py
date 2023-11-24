@@ -1,11 +1,8 @@
-
-
 import rclpy
 from nav2_simple_commander.robot_navigator import BasicNavigator
 from geometry_msgs.msg import PoseStamped
 from tf_transformations import quaternion_from_euler
-
-
+from teste import msg
 
 import re
 
@@ -56,9 +53,9 @@ def main():
     while True:
         
         input_text = input("Enter a command: ")
-        positions = getCoordinates(input_text)
         if input_text == "exit":
             break
+        positions = getCoordinates(msg(input_text))
         if positions is None:
             print("Invalid command")
             continue
