@@ -11,3 +11,7 @@ while True:
     if (a == "sair"):
         client_socket.close()
         break
+
+
+class robot():
+    pass

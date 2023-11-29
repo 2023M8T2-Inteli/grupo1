@@ -5,6 +5,9 @@ install/
 log/
 build/
 
+node_modules/
+.wwebjs_cache/
+
 # Ignore generated docs
 *.dox
 *.wikidoc
