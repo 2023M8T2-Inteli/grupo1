@@ -1,0 +1,3 @@
+Modulos responsaveis por tratar as requisiçõs.
+
+tratamento -> inteção [rob_services] -> ação
