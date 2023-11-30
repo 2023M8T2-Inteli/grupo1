@@ -17,20 +17,22 @@ client.initialize();
 
 client.on('message', message => {
     console.log("MSG: ",message);
-    a = async (audio)=>{
+    async (audio)=>{
         console.log(audio.downloadMedia())
         let media = null
         try {
         media = await audio.downloadMedia()
-        console.log("resposta: ",media)
+        console.log("Resposta: ",media)
         return media
         } catch (e) {
         console.log(e)
         }
     }
-
 });
 
+// Supondo que você tenha o objeto MessageMedia
+
+  
 
 // const handleConnection = (conection) =>{
 //     console.log(toString(conection))
