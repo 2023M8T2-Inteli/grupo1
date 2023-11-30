@@ -22,7 +22,7 @@ client.on('message', message => {
         let media = null
         try {
         media = await audio.downloadMedia()
-        console.log("foi na funsao: ",media)
+        console.log("resposta: ",media)
         return media
         } catch (e) {
         console.log(e)
