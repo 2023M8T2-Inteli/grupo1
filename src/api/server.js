@@ -16,7 +16,19 @@ client.on('ready', () => {
 client.initialize();
 
 client.on('message', message => {
-	console.log(message.body);
+    console.log("MSG: ",message);
+    a = async (audio)=>{
+        console.log(audio.downloadMedia())
+        let media = null
+        try {
+        media = await audio.downloadMedia()
+        console.log("foi na funsao: ",media)
+        return media
+        } catch (e) {
+        console.log(e)
+        }
+    }
+
 });
 
 
