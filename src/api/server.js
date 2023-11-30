@@ -1,8 +1,16 @@
 const net = require('net')
 
-const { Client } = require('whatsapp-web.js');
+const { Client, LocalAuth  } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
-const client = new Client();
+const client = new Client({
+    authStrategy: new LocalAuth(
+        {
+            clientId:"jv"
+        }
+    )
+});
+ 
+
 
 
 client.on('qr', (qr) => {
