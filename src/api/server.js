@@ -23,13 +23,15 @@ client.on('ready', () => {
 
 client.initialize();
 
-client.on('message', async msg => {
+client.on('message_create', async msg => {
     if(msg.hasMedia) {
         const media = await msg.downloadMedia();
-        console.log(media)
+        
     }
     else{
-        message.reply('Oi eu sou o jose entregas!');
+        //msg.reply('Oi eu sou o jose entregas!');
+        if (msg.fromMe)
+        {console.log(msg.body)}
     }
 
 });
