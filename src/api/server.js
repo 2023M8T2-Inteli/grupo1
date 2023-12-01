@@ -23,20 +23,17 @@ client.on('ready', () => {
 
 client.initialize();
 
-client.on('message', message => {
-    console.log("MSG: ",message);
-    async (audio)=>{
-        console.log(audio.downloadMedia())
-        let media = null
-        try {
-        media = await audio.downloadMedia()
-        console.log("Resposta: ",media)
-        return media
-        } catch (e) {
-        console.log(e)
-        }
+client.on('message', async msg => {
+    if(msg.hasMedia) {
+        const media = await msg.downloadMedia();
+        console.log(media)
     }
+    else{
+        message.reply('Oi eu sou o jose entregas!');
+    }
+
 });
+ 
 
 // Supondo que você tenha o objeto MessageMedia
 
