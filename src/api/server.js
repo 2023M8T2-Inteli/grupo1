@@ -11,6 +11,11 @@ const client = new Client({
 });
  
 
+var intent_dict = {
+    "\\b^([Qq]uero|[Pp]reciso|[Ee]stou|[Oo]nde encontro|[Pp]rocuro)\\s+[a-zA-Z\\s]+\\s(.+)$": "control",
+    "\\b[Vv][áa](?:\\spara)?\\s?[oa]?\\s(.+)": "go_to",
+    "\\b[Mm]e\\sleve até\\s?[oa]?\\s(.+)": "go_to"
+};
 
 
 client.on('qr', (qr) => {
@@ -31,7 +36,11 @@ client.on('message_create', async msg => {
     else{
         //msg.reply('Oi eu sou o jose entregas!');
         if (msg.fromMe)
-        {console.log(msg.body)}
+        {try {
+            console.log(intent_dict[msg.body])
+        } catch (error) {
+            console.log("Ação não encontrada")
+        }}
     }
 
 });
