@@ -1,5 +1,4 @@
 const net = require('net')
-const crypto = require('crypto');
 const { Client, LocalAuth  } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const client = new Client({
@@ -53,7 +52,7 @@ client.on('ready', () => {
 
 client.initialize();
 
-client.on('message', async msg => {
+client.on('', async msg => {
     if(msg.hasMedia) {
         const media = await msg.downloadMedia();
         
@@ -84,15 +83,11 @@ client.on('message', async msg => {
                 
            
             console.log(msg.body);
-            //console.log(msg)
             
         }
     }
 
 });
- 
-
-// Supondo que você tenha o objeto MessageMedia
 
   
 
