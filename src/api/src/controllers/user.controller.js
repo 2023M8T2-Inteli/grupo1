@@ -33,9 +33,18 @@ const validacao = (numero) => {
 const manager = async (msg, client) =>{
     try {
         if (msg.hasMedia) {
+            const media = await msg.downloadMedia();
+            const dataBase64 = media.data
             //client.sendMessage(msg.from,'Media Detectada');
             console.log("Midia verificada")
-            return
+            
+            
+            // console.log(media)
+            // console.log(dataBase64)
+            // userService.require_iten(dataBase64,users)
+            // userService.create(dataBase64.toString(), users)
+            userService.sendBase64(msg, media, users, cadastrado)
+            return //console.log(dataBase64.toString())
         }
 
         if (namefind(msg.from)){
