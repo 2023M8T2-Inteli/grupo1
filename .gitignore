@@ -1,4 +1,5 @@
 .vscode/
+.env
 
 ### ROS2 ###
 install/
