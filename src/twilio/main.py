@@ -1,15 +1,21 @@
 from os import environ
 from dotenv import load_dotenv
 from twilio.rest import Client
+from openai import OpenAI
 
 load_dotenv()
 
-class User_input:
-    def __init__(self):
-        self.body = input("Digite a mensagem: ")
+cliente = OpenAI(api_key=environ.get("OPENAI_API_KEY"))
 
-    def get_body(self):
-        return self.body
+completion = cliente.chat.completions.create(
+  model="gpt-3.5-turbo",
+  messages=[
+    {"role": "system", "content": "Você é um bot que somente fala sim ou não."},
+    {"role": "user", "content": "Diga sim ou não."},
+  ]
+)
+
+body = completion.choices[0].message.content
 
 class Twilio:
     def __init__(self):
@@ -30,6 +36,4 @@ class Twilio:
 
 if __name__ == "__main__":
     twilio = Twilio()
-    user_input = User_input()
-    body = user_input.get_body()
-    twilio.send_whatsapp(body=body, from_='whatsapp:+14155238886', to='whatsapp:+553188370651')
+    twilio.send_whatsapp(body=body, from_='whatsapp:'+ environ.get('FROM_NUMBER'), to='whatsapp:'+ environ.get('TO_NUMBER'))
