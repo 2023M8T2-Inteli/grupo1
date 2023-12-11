@@ -8,6 +8,7 @@ class Robot():
         self.data = ''
         host = '127.0.0.1' 
         port = 4000
+        self.startTeste = 0
 
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.bind((host, port))
@@ -23,14 +24,12 @@ class Robot():
         
 
     def handle_client(self,none):
-        self.clientes += 1
         try:
             while True:
                 self.data = self.client_socket.recv(1024).decode('utf-8')
-                print(f"seu dado : {self.data}")
                 if not self.data:
                     break
-                print(f"Mensagem recebida do cliente{self.clientes}: {self.data}")
+                print(f"Mensagem recebida do cliente{self.startTeste}: {self.data}")
                 self.data = self.data
                 response = "Mensagem recebida com sucesso!"
                 self.client_socket.send(response.encode('utf-8'))
@@ -42,7 +41,12 @@ class Robot():
 
     
     def requicoes(self):
-        return self.data
+        allData = self.data.split()
+        if (self.data != ''):
+            if allData[0] == "start":
+                self.startTeste += 1
+        print(self.startTeste)
+        return allData #self.data
 
 
 

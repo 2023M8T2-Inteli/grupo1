@@ -16,7 +16,7 @@ client_user.on('end', () => {
 
 function send(msg) {
     try {
-        client_user.write(msg)
+        client_user.write('start '+msg+' end')
         // Evento de recebimento de menssagens do servidor
  
     } catch (error) {
