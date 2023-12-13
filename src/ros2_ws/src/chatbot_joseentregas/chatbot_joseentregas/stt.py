@@ -1,12 +1,12 @@
-# from decouple import config
-# import whisper
+from decouple import config
+import whisper
 
-from openai import OpenAI
+# from openai import OpenAI
 
 
-api_key = config("OPENAI_API_KEY")
+# api_key = config("OPENAI_API_KEY")
 
-client = OpenAI(api_key=api_key)
+# client = OpenAI(api_key=api_key)
 
 
 class STT:
@@ -29,26 +29,18 @@ class STT:
             print(f"Detected language: {max(probs, key=probs.get)}")
 
             # decode the audio
-            options = whisper.DecodingOptions()
+            options = whisper.DecodingOptions(fp16=False)
             result = whisper.decode(self.model, mel, options)
             return result.text
 
 
-def main():
-    # stt = STT(filename='./media/harvard.wav')
-    # speech_text = stt.transcribe()
-    # # arquivo só para teste, excluir dps
-    # # speech_text = transcribe("./media/harvard.wav")
-    # print(speech_text)
-    client = OpenAI()
-
-    audio_file = open("./media/harvard.wav", "rb")
-    transcript = client.audio.transcriptions.create(
-    model="whisper-1", 
-    file=audio_file, 
-    response_format="text"
-    )
-    print(transcript)
+def main():    
+    # arquivo só para teste, excluir dps
+    stt = STT(filename='./media/harvard.wav')
+    print(stt)
+    speech_text = stt.transcribe()
+    
+    print(speech_text)
 
 if __name__ == "__main__":
     main()
