@@ -40,7 +40,10 @@ class ChatBotModel(Node):
         match = re.findall(r'[-+]?(\d*\.\d+|\d+)([eE][-+]?\d+)?', input_text)
         position = [float(i[0]) for i in match]
         self._logger.info(f'position: {position}')
-        return str(position)
+        if len(position) > 1:
+            return f"{position[0]},{position[1]}"
+        self._logger.info(f'Erro ao detectar as peças: { len(position) }')
+
 
     def chat(self, text):
         output_text = self._model.chat(text)
