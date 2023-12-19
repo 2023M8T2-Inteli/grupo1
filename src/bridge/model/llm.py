@@ -56,4 +56,5 @@ class ChatBotModel():
 
 if __name__ == "__main__":
     llm = ChatBotModel()
+    print(llm.chat("ondes esta o prego"))
     print("aa")

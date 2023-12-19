@@ -1,6 +1,6 @@
 
 from langchain.prompts import ChatPromptTemplate
-from model import archive_loader_and_vectorizer,model
+from bridge.model.model import archive_loader_and_vectorizer,model
 from langchain.schema.runnable import  RunnablePassthrough
 from collections import deque
 import re

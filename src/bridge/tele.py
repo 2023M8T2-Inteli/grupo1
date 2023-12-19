@@ -3,9 +3,9 @@ from telegram import Update,File
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler,MessageHandler,filters
 from decouple import config
 from talker import Talker
-from llm import ChatBotModel
-from stt import STT
-from tts import TTS
+from model import ChatBotModel
+from speech_to_text.stt import STT
+
 import re
 
 def get_input_position(msg):
