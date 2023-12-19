@@ -5,7 +5,7 @@ from decouple import config
 from talker import Talker
 from model import ChatBotModel
 from speech_to_text import STT
-
+from tts import TTS
 import re
 
 def get_input_position(msg):
