@@ -1,4 +1,3 @@
-import subprocess
 import roslibpy
 import os
 import threading

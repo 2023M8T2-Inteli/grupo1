@@ -4,7 +4,6 @@ from std_msgs.msg import String
 from python_tsp.exact import solve_tsp_dynamic_programming
 import math
 import numpy as np
-from collections import deque
 
 def create_pose_stamped( pos_x, pos_y, rot_z,nav) -> PoseStamped:
     """Creates a position in the map frame with the given coordinates and rotation"""
@@ -51,7 +50,7 @@ def move_to(self,nav)-> None:
     # message.data = "i am going to point " + str(positions)
     # self.feedback.publish(message)
     while not nav.isTaskComplete():
-        message.data = nav.get_feedback()
+        message.data = str(nav.getFeedback())
         self.feedback.publish(message)
         # print(nav.get_clock().now().to_msg().sec)
         pass
@@ -59,27 +58,25 @@ def move_to(self,nav)-> None:
     message = String()
     message.data = "i am done"
     self.feedback.publish(message)
-def sort_points(points)-> deque:
+def sort_points(points)-> list:
 
-    _points = points.copy()
-
-    _points.appendleft([0.0,0.0])
+    points = [[0.0,0.0]] + points
 
     """sorts the points in the list of points using the travelling salesman problem algorithm"""
     distance_array = []
     distance_for_point = []
-    for point1 in _points:
-        for point2 in _points:
+    for point1 in points:
+        for point2 in points:
             distance_for_point.append(math.dist(point1,point2))
         distance_array.append(distance_for_point)
         distance_for_point = []
 
     permutation, _ = solve_tsp_dynamic_programming(np.array(distance_array))
 
-    sorted_points = deque()
+    sorted_points = []
     for i in permutation:
-        sorted_points.append(_points[permutation[i]])
+        sorted_points.append(points[permutation[i]])
 
-    sorted_points.append(sorted_points.popleft())
+    sorted_points.append(sorted_points.pop(0))
     
     return sorted_points

@@ -4,7 +4,7 @@ from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler,Messag
 from decouple import config
 from talker import Talker
 from model import ChatBotModel
-from speech_to_text.stt import STT
+from speech_to_text import STT
 
 import re
 
