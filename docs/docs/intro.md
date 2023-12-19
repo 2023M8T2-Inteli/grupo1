@@ -32,6 +32,86 @@ O projeto José Entregas se trata de uma solução produzida por um dos grupos d
 
 ## 📁 Estrutura de pastas
 
+A estrutura de pastas do projeto segue o seguinte formato.
+
+```
+.
+├── .github
+├── docs
+├── env.example
+├── readme.md
+├── requirements.txt
+├── src
+├── test
+├── requirements.md
+└── readme.md
+```
+
+- *.github*: Pasta com as configurações para automatizar a versão live
+- *docs*: Pasta da documentação do projeto. Aqui, encontram-se todos os arquivos .md e as dependências do docusaurus.
+- *src*: Pasta que contém todo o código-fonte do projeto
+- *test*: Pasta que contém testes unitários das funcionalidades indicadas
+- *requirements.txt*: Arquivo que contém todas as dependências do projeto em Python
+- *readme.md*: Arquivo de introdução do repositório
+
+## 📁 Organização da documentação
+
+Possuímos sessões que apresentam conteúdos pertinentes.
+
+### 💼 Negócios
+
+Nessa sessão, abordamos os assuntos relacionados às questões de negócios do projeto. Os tópicos abordados são:
+
+- [Matriz de oceano azul](business/Blue-Ocean-Matrix.md)
+- [Análise financeira](business/Financial-Analysis.md)
+- [Matriz de riscos](business/matriz-riscos.md)
+- [TAM, SAM e SOM](business/TAM-SAM-SOM.md)
+- [Canva de Proposta de Valor](business/Value-proposition-canvas.md)
+
+### 👩‍💻 User Experience
+
+Nessa sessão, abordamos os assuntos relacionados às questões de negócios do projeto. Os tópicos abordados são:
+
+- [User Stories](ux/userStories.md)
+- [Jornada do usuário](ux/Jornada%20do%20Usuario.md)
+- [Funcionalidades desenvolvidas](ux/Project-features.md)
+- [Prototipação em baixa fidelidade](ux/Protetipacao.md)
+- [Persona](ux/persona.md)
+- [Teste com usuário](ux/teste_user.md)
+
+### 🌟 Liderança
+
+- [Ética](lideranca/etica.md)
+
+### 💻 Programação
+
+- [Estrutura de Dados & Design Patterns](programacao/Design-patterns.md)
+- [Requisitos funcionais e não funcionais](programacao/Functional-requirements.md)
+- [Arquitetura da solução](programacao/Solution-architeture.md)
+- [STT & TTS](programacao/STT_&_TTS.md)
+- [Interface do usuário](programacao/interface_features.md)
+- [Funcionalidades do sistema](programacao/System-Features/whatsapp_flow.md)
+
+### 🛠️ Setup do Sistema
+
+- [Instalação de dependências](project-setup/Project-setup.md)
+- [Construção do modelo LLM](project-setup/Llm.md)
+- [Inicialização dos pacotes ros2](project-setup/Robot.md)
+- [Conexão via ssh](project-setup/ssh_connection.md)
+- [Criação de um arquivo de variáveis de ambiente](project-setup/env_config.md)
+
+### 🎬 Demonstrações
+
+- [Pacote de mapeamento](demo/Mapeamento.md)
+- [Chatbot - Telegram](demo/telegram_chatting.md)
+
+### 🗣️ Apresentações
+
+- [Apresentação Sprint 1](presentations/sprint1.md)
+- [Apresentação Sprint 2](presentations/sprint2.md)
+- [Apresentação Sprint 3](presentations/sprint3.md)
+- [Apresentação Sprint 4](presentations/sprint4.md)
+
 ## 💻 Execução do projeto
 
 As instruções de instalação das dependências e execução do projeto estão disponíveis na seção de [setup do sistema](/category/setup-do-sistema).
