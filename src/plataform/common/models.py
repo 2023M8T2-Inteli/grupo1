@@ -25,3 +25,10 @@ class AuthorizedNumber(models.Model):
     number = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     date = models.DateTimeField(auto_now_add=True)
+
+
+class Item(models.Model):
+    item = models.CharField(max_length=100)
+    x = models.FloatField()
+    y = models.FloatField()
+    z = models.FloatField(default=0.0)
