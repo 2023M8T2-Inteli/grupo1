@@ -53,6 +53,11 @@ class LogsView(TemplateView):
 class NumbersView(TemplateView):
     template_name = 'numbers.jinja'
 
+    class Utils:
+        @staticmethod
+        def format_number(raw_number):
+            return f'({raw_number[:2]}) {raw_number[2:7]}-{raw_number[7:]}'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -61,7 +66,7 @@ class NumbersView(TemplateView):
         context['numbers'] = [
             {
                 "id": entry.id,
-                "number": entry.number,
+                "number": self.Utils.format_number(entry.number),
                 "name": entry.name,
                 "created_at": {
                     "date": entry.date.date(),
@@ -69,6 +74,39 @@ class NumbersView(TemplateView):
                 },
             }
             for entry in numbers_from_database
+        ]
+        return context
+
+
+class ItemsView(TemplateView):
+    template_name = 'items.jinja'
+
+    class Utils:
+        @staticmethod
+        def format_position(integer_position):
+            str_position = str(integer_position)
+            str_position = str_position.replace(',', '.')
+            return str_position
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        items_from_database = Item.objects.all()
+
+        context['items'] = [
+            {
+                "id": entry.id,
+                "item": entry.item,
+                "image_url": entry.image_url,
+                "x": self.Utils.format_position(entry.x),
+                "y": self.Utils.format_position(entry.y),
+                "z": self.Utils.format_position(entry.z),
+                "created_at": {
+                    "date": entry.date.date(),
+                    "time": entry.date.time(),
+                },
+            }
+            for entry in items_from_database
         ]
         return context
 
