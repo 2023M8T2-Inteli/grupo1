@@ -3,9 +3,23 @@ from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.http import HttpResponse
 from rest_framework import status
 from .models import Log, AuthorizedNumber, Item
 from .serializers import LogSerializer, AuthorizedNumberSerializer, ItemSerializer
+import csv
+
+
+class Utils:
+    @staticmethod
+    def format_number(raw_number):
+        return f'({raw_number[:2]}) {raw_number[2:7]}-{raw_number[7:]}'
+
+    @staticmethod
+    def format_position(integer_position):
+        str_position = str(integer_position)
+        str_position = str_position.replace(',', '.')
+        return str_position
 
 
 class HomeView(TemplateView):
@@ -29,7 +43,7 @@ class LogsView(TemplateView):
             {
                 "user": {
                     "name": entry.requester_name,
-                    "number": entry.requester_number
+                    "number": Utils.format_number(entry.requester_number)
                 },
                 "item": {
                     "description": entry.item,
@@ -53,11 +67,6 @@ class LogsView(TemplateView):
 class NumbersView(TemplateView):
     template_name = 'numbers.jinja'
 
-    class Utils:
-        @staticmethod
-        def format_number(raw_number):
-            return f'({raw_number[:2]}) {raw_number[2:7]}-{raw_number[7:]}'
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -66,7 +75,7 @@ class NumbersView(TemplateView):
         context['numbers'] = [
             {
                 "id": entry.id,
-                "number": self.Utils.format_number(entry.number),
+                "number": Utils.format_number(entry.number),
                 "name": entry.name,
                 "created_at": {
                     "date": entry.date.date(),
@@ -74,6 +83,32 @@ class NumbersView(TemplateView):
                 },
             }
             for entry in numbers_from_database
+        ]
+        return context
+
+
+class ItemsView(TemplateView):
+    template_name = 'items.jinja'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        items_from_database = Item.objects.all()
+
+        context['items'] = [
+            {
+                "id": entry.id,
+                "item": entry.item,
+                "image_url": entry.image_url,
+                "x": Utils.format_position(entry.x),
+                "y": Utils.format_position(entry.y),
+                "z": Utils.format_position(entry.z),
+                "created_at": {
+                    "date": entry.date.date(),
+                    "time": entry.date.time(),
+                },
+            }
+            for entry in items_from_database
         ]
         return context
 
@@ -107,6 +142,24 @@ class LogAPI:
             log.status = new_status
             log.save()
             return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    @api_view(["GET"])
+    def get_csv_file(request):
+        if request.method == "GET":
+            response = HttpResponse(content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="logs.csv"'
+
+            writer = csv.writer(response)
+            writer.writerow(['Nome', 'Número', 'Item', 'Categoria', 'Quantidade', 'Data', 'Hora', 'Status'])
+
+            logs_from_database = Log.objects.all()
+
+            for entry in logs_from_database:
+                writer.writerow([entry.requester_name, entry.requester_number, entry.item, entry.category,
+                                 entry.quantity, entry.date.date(), entry.date.time(), entry.Status(entry.status).name])
+
+            return response
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 

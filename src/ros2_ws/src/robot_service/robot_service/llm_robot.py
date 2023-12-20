@@ -30,7 +30,7 @@ class ChatBotModel(Node):
         This function purpose is to processes data from the llm_topic
         """
         self._logger.info(f'Robot received: {msg.data}')
-        if msg.data == "run":
+        if str(msg.data).lower() == "run":
             self._logger.info(f'/run -> Iniciei a rota: {self._msg.data}')
             if self.nav.isTaskComplete() and self.queue:
                 self._logger.warning(f'Passing data to navigation controller  {self.queue}')

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from common.views import HomeView, LogsView, NumbersView, LogAPI, AuthorizedNumberAPI, ItemAPI
+from common.views import HomeView, LogsView, NumbersView, ItemsView, LogAPI, AuthorizedNumberAPI, ItemAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,9 +24,11 @@ urlpatterns = [
     path('', HomeView.as_view(), name='index'),
     path('logs/', LogsView.as_view(), name='logs'),
     path('numbers/', NumbersView.as_view(), name='numbers'),
+    path('items/', ItemsView.as_view(), name='items'),
 
     path('api/logs/create/', LogAPI.create_log, name='create_log'),
     path('api/logs/status/', LogAPI.update_status, name='update_status'),
+    path('api/logs/csv/', LogAPI.get_csv_file, name='get_csv_file'),
 
     path('api/number/create/', AuthorizedNumberAPI.create_autorized_number, name='create_autorized_number'),
     path('api/number/get/', AuthorizedNumberAPI.get_all_autorized_number, name='get_all_autorized_number'),

@@ -17,9 +17,16 @@ cp env.example .env
 
  Em seguida e preencha os as variáveis com os valores corretos. Um exemplo abaixo:
 
+- OPENAI_API_KEY: Chave de API da OPENAI
+- DJANGO_SECRET_KEY: Chave secreta para rodar a aplicação Web
+- KEY: Chave do bot do telegram
+- BOT_ID: Número do bot do WhatsApp
+
 ```.env
 OPENAI_API_KEY="chave-da-api-aqui"
 DJANGO_SECRET_KEY="chave-secreta-aqui"
+TELEGRAM_KEY="chave-do-bot-telegram-aqui"
+WHATSAPP_BOT_KEY="chave-do-whatsapp-aqui"
 ```
 
 :::warning

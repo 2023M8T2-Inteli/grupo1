@@ -2,6 +2,8 @@ const userService = require("../services/user.service")
 const fs = require('fs');
 const path = require('path');
 
+const fetch = require('../database/fetch')
+
 var users = {
     "5511948701514@c.us":"jv",
     "553188370651@c.us":"Pablo",
@@ -23,16 +25,25 @@ const namefind = (numero) => {
 
 }
 
+// Substituir logica por busca na api da Plataforma - Get para obter todos os cadastros, dps verificação de numero cadastrado
 const validacao = (numero) => {
-    if (cadastrado[numero]){
-        console.log("User cadastrado")
-        return false
-    }
-    else{
-        cadastrado[numero] = "Em cadastro"
-        return true
+    usersNum = getCadastrado()
+
+    for (const num in usersNum) {
+        if (cadastrado[numero] == `55${num}@c.us`){
+            console.log("User cadastrado")
+            return false
+        }
+        else{
+            cadastrado[numero] = "Em cadastro"
+            return true
+        }
     }
 
+}
+
+const getCadastrado = () => {
+    return fetch.getFetch()
 }
 
 const manager = async (msg, client,publish) =>{

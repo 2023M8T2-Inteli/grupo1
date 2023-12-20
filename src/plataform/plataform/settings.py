@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'plataform.wsgi.app'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # Define database configurations
-if DEBUG:
+if os.getenv('POSTGRES_DATABASE') is None:
     # Local database configuration
     DATABASES = {
         'default': {
@@ -105,11 +105,11 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DATABASE_NAME'),
-            'USER': os.getenv('DATABASE_USER'),
-            'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-            'HOST': os.getenv('DATABASE_HOST'),
-            'PORT': os.getenv('DATABASE_PORT'),
+            'NAME': os.getenv('POSTGRES_DATABASE'),
+            'USER': os.getenv('POSTGRES_USER'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+            'HOST': os.getenv('POSTGRES_HOST'),
+            'PORT': '5432',
         }
     }
 
@@ -170,6 +170,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

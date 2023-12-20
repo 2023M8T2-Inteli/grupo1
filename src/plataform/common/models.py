@@ -32,3 +32,5 @@ class Item(models.Model):
     x = models.FloatField()
     y = models.FloatField()
     z = models.FloatField(default=0.0)
+    image_url = models.CharField(max_length=256)
+    date = models.DateTimeField(auto_now_add=True)
