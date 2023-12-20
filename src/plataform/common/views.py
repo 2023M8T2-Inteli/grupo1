@@ -3,9 +3,11 @@ from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.http import HttpResponse
 from rest_framework import status
 from .models import Log, AuthorizedNumber, Item
 from .serializers import LogSerializer, AuthorizedNumberSerializer, ItemSerializer
+import csv
 
 
 class Utils:
@@ -140,6 +142,24 @@ class LogAPI:
             log.status = new_status
             log.save()
             return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    @api_view(["GET"])
+    def get_csv_file(request):
+        if request.method == "GET":
+            response = HttpResponse(content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="logs.csv"'
+
+            writer = csv.writer(response)
+            writer.writerow(['Nome', 'Número', 'Item', 'Categoria', 'Quantidade', 'Data', 'Hora', 'Status'])
+
+            logs_from_database = Log.objects.all()
+
+            for entry in logs_from_database:
+                writer.writerow([entry.requester_name, entry.requester_number, entry.item, entry.category,
+                                 entry.quantity, entry.date.date(), entry.date.time(), entry.Status(entry.status).name])
+
+            return response
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 

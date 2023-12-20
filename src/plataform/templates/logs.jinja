@@ -125,35 +125,12 @@
 {% block script %}
     <script>
         document.getElementById('download-csv').addEventListener('click', function() {
-            function tableToCSV(table) {
-                var csv = [];
-                var rows = table.querySelectorAll("tr");
+            const url = window.location.origin + '/api/logs/csv/';
 
-                for (var i = 0; i < rows.length; i++) {
-                    var row = [],
-                        cols = rows[i].querySelectorAll("td, th");
-
-                    for (var j = 0; j < cols.length; j++)
-                        row.push('"' + cols[j].innerText + '"');
-
-                    csv.push(row.join(","));
-                }
-
-                return csv.join("\n");
-            }
-
-            var csv = tableToCSV(document.querySelector("table"));
-            var csvFile = new Blob([csv], {
-                type: "text/csv"
-            });
-            var downloadLink = document.createElement("a");
-
-            downloadLink.download = "historico.csv";
-            downloadLink.href = window.URL.createObjectURL(csvFile);
-            downloadLink.style.display = "none";
-
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
+            const tempLink = document.createElement('a');
+            tempLink.href = url;
+            tempLink.setAttribute('download', 'logs.csv');
+            tempLink.click();
         });
     </script>
 {% endblock script %}
