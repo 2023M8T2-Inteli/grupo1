@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'plataform.wsgi.app'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # Define database configurations
-if DEBUG:
+if os.getenv('POSTGRES_HOST') is None:
     # Local database configuration
     DATABASES = {
         'default': {
