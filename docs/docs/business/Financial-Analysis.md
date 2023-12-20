@@ -45,8 +45,7 @@ Nos custos operacionais do cenário de protótipo, é importante observar que a 
 | Componente                                                                                          | Preço Unitário | Imposto | Quantidade | Total         |
 | --------------------------------------------------------------------------------------------------- | -------------- | ------- | ---------- | ------------- |
 | [TURTLEBOT3 Burger](https://www.robotis.us/turtlebot-3-burger-us/)                                  | R$ 4.284,78    | 20%     | 2          | R$ 10.256,4 8 |
-| [Display 7'](https://www.rsrobotica.com.br/produto/tela-touch-screen-7-polegadas-800x480-hdmi.html) | R$ 529,90      | 20%     | 2          | R$ 1.271,76   |
-| Total                                                                                               |                |         |            | R$ 11.528,24  |
+| Total                                                                                               |                |         |            | R$ 10.256,4 8  |
 
 ### Cenário definitivo
 

@@ -19,6 +19,3 @@ A partir disso, podemos elaborar estratégias para mitigação dos riscos, sendo
 
 - Vazamento de informações de infraestrutura interna
     - Estratégia: Aplicaremos estratégias de segurança da informação e autenticação de usuários para evitar o vazamento de informações.
-
-- Dificuldade de visualização do display devido à sua altura relativa
-    - Estratégia: O display será equipado em uma estrutura inclinada, que permita a visualização superior.
