@@ -78,6 +78,39 @@ class NumbersView(TemplateView):
         return context
 
 
+class ItemsView(TemplateView):
+    template_name = 'items.jinja'
+
+    class Utils:
+        @staticmethod
+        def format_position(integer_position):
+            str_position = str(integer_position)
+            str_position = str_position.replace(',', '.')
+            return str_position
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        items_from_database = Item.objects.all()
+
+        context['items'] = [
+            {
+                "id": entry.id,
+                "item": entry.item,
+                "image_url": entry.image_url,
+                "x": self.Utils.format_position(entry.x),
+                "y": self.Utils.format_position(entry.y),
+                "z": self.Utils.format_position(entry.z),
+                "created_at": {
+                    "date": entry.date.date(),
+                    "time": entry.date.time(),
+                },
+            }
+            for entry in items_from_database
+        ]
+        return context
+
+
 class LogAPI:
     @staticmethod
     @api_view(['POST'])
