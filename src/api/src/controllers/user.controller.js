@@ -25,12 +25,12 @@ const namefind = (numero) => {
 
 }
 
-// Substituir logica por busca na api da Plataforma - Get para obter todos os cadastros, dps verificação de numero cadastrado 
+// Substituir logica por busca na api da Plataforma - Get para obter todos os cadastros, dps verificação de numero cadastrado
 const validacao = (numero) => {
     usersNum = getCadastrado()
 
     for (const num in usersNum) {
-        if (cadastrado[numero] == num){
+        if (cadastrado[numero] == `55${num}@c.us`){
             console.log("User cadastrado")
             return false
         }
