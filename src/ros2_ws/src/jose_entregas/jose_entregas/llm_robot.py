@@ -4,13 +4,13 @@ from nav2_simple_commander.robot_navigator import BasicNavigator
 from .auxliar_functions import move_to,generate_initial_pose,sort_points
 from rclpy.node import Node
 from std_msgs.msg import String
-from collections import deque
+
 
 class Robot(Node):
     def __init__(self,nav):
         super().__init__('robot_node')
         self.nav = nav
-        self.queue = deque()
+        self.queue = []
         self._subscriber = self.create_subscription(
             String,
             'chatbot_topic',

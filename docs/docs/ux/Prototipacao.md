@@ -3,7 +3,7 @@
 
 A prototipação em baixa fidelidade é uma fase essencial no processo de design, geralmente realizada nas etapas iniciais de um projeto. Ela envolve a criação de representações simplificadas e esboços do produto ou interface, com o objetivo de explorar ideias, testar conceitos e validar abordagens de design sem investir muito tempo ou recursos.
 
-Para o nosso protótipo utilizamos a ferramenta Figma para esboçar a primeira ideia da solução. Estando disponível para alteração em nosso [Repositório no Fgma.](https://www.figma.com/proto/3lIC2GMbAbxG8NXGy7G8Sl/Ambev?type=design&node-id=418-22&t=4B88Cz1Fa6lqMyVx-1&scaling=scale-down&page-id=0%3A1&starting-point-node-id=414%3A13&mode=design)
+Para o nosso protótipo utilizamos a ferramenta Figma para esboçar a primeira ideia da solução. Estando disponível para alteração em nosso [Repositório no Figma.](https://www.figma.com/proto/3lIC2GMbAbxG8NXGy7G8Sl/Ambev?type=design&node-id=418-22&t=4B88Cz1Fa6lqMyVx-1&scaling=scale-down&page-id=0%3A1&starting-point-node-id=414%3A13&mode=design)
 
 
 ## Etapas do protótipo

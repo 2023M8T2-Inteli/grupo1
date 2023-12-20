@@ -18,8 +18,10 @@ class LLM_model():
     def __init__(self) -> None:
         self._model = ChatOpenAI(model="gpt-3.5-turbo", api_key=KEY)
         self._retriever = self.archive_loader_and_vectorizer()
-        template = """Answer the question based only on the following context:
-        {context}, in portuguese
+        template = """You are now responsible for managing a warehouse.
+        I want you to respond as an expert in the field, providing short and direct answers to any questions asked of you.
+        Answer the question based only on the following context:{context}, and find the right words to always choose one of the options from the context.
+        Always respond in Portuguese.
 
         Question: {question}
         """
