@@ -82,7 +82,7 @@ class NumbersView(TemplateView):
                     "time": entry.date.time(),
                 },
             }
-            for entry in numbers_from_database
+            for entry in numbers_from_database[::-1]
         ]
         return context
 
