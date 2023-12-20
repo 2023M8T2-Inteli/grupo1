@@ -59,7 +59,7 @@ class LogsView(TemplateView):
                 },
                 "status": entry.Status(entry.status).name,
             }
-            for entry in logs_from_database
+            for entry in logs_from_database[::-1]
         ]
         return context
 
