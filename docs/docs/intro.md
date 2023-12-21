@@ -92,7 +92,7 @@ Nessa sessão, abordamos os assuntos relacionados às questões de negócios do 
 
 -   [Estrutura de Dados & Design Patterns](programacao/Design-patterns.md)
 -   [Requisitos funcionais e não funcionais](programacao/Functional-requirements.md)
--   [Arquitetura da solução](programacao/Solution-architeture.md)
+-   [Arquitetura da solução](programacao/Solution-architecture.md)
 -   [STT & TTS](programacao/STT_&_TTS.md)
 -   [Interface do usuário](programacao/interface_features.md)
 -   [Funcionalidades do sistema](programacao/System-Features/whatsapp_flow.md)
