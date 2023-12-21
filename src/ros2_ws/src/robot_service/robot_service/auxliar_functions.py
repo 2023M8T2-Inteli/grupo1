@@ -8,8 +8,6 @@ from collections import deque
 
 
 
-
-
 def get_input_position(self,text):
     """
     This function purpose is to get the position from the chatbot
@@ -23,7 +21,8 @@ def get_input_position(self,text):
     if len(position) > 1:
         return [position[0],position[1]]
     self._logger.info(f'Erro ao detectar as peças: { len(position) }')
-    return 
+
+    return
 
 
 def create_pose_stamped( pos_x, pos_y, rot_z,nav) -> PoseStamped:
@@ -61,7 +60,7 @@ def generate_initial_pose(nav)-> None:
     nav.waitUntilNav2Active()
 
 
-def move_to(self,nav)-> None:   
+def move_to(self,nav)-> None:
     waypoints = []
     """moves the robot next the  position in the queue"""
     if len(self.queue) == 0:
@@ -71,16 +70,18 @@ def move_to(self,nav)-> None:
         position = create_pose_stamped(positions[0],positions[1],0.0,nav)
         waypoints.append(position)
         nav.get_logger().info('reached  point ' + str(position))
-    
+
     nav.followWaypoints(waypoints)
-    #self._publisher.publish("i am done")
+
+
+
 
 def sort_points(points, self)-> deque:
 
 
     _points = points.copy()
 
-    
+
     _points.appendleft([0.0,0.0])
     self._logger.info(f'Pontos apos apennd: {_points}')
 
@@ -104,6 +105,5 @@ def sort_points(points, self)-> deque:
 
 
     sorted_points.append(sorted_points.popleft())
-   
+    self._logger.info(f'Pontos: {sorted_points}')
     return sorted_points
-

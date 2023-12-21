@@ -12,11 +12,10 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-KEY = ''
 
 class LLM_model():
     def __init__(self) -> None:
-        self._model = ChatOpenAI(model="gpt-3.5-turbo", api_key=KEY)
+        self._model = ChatOpenAI(model="gpt-3.5-turbo", api_key=os.getenv("OPENAI_API_KEY"))
         self._retriever = self.archive_loader_and_vectorizer()
         template = """You are now responsible for managing a warehouse.
         I want you to respond as an expert in the field, providing short and direct answers to any questions asked of you.
@@ -33,14 +32,14 @@ class LLM_model():
         and vectorizes them
         """
         loader = DirectoryLoader('./',
-                                glob='**/items.txt',
+                                glob='**/context.txt',
                                 loader_cls=TextLoader,
                                 show_progress=True
                             )
 
         documents = loader.load()
 
-        text_splitter = CharacterTextSplitter(chunk_size=300, chunk_overlap=0)
+        text_splitter = CharacterTextSplitter(chunk_size=30000, chunk_overlap=0)
 
         docs = text_splitter.split_documents(documents)
 
@@ -52,21 +51,6 @@ class LLM_model():
 
         return retriever
 
-    def get_input_position(self,text):
-        """
-        This function purpose is to get the position from the chatbot
-        using a regex, then returning it as a list of float
-        """
-        input_text = text
-        self._logger.info(f'Robot received: {text}')
-        match = re.findall(r'[-+]?(\d*\.\d+|\d+)([eE][-+]?\d+)?', input_text)
-        position = [float(i[0]) for i in match]
-        self._logger.info(f'position: {position}')
-        if len(position) > 1:
-            return f"{position[0]},{position[1]}"
-        self._logger.info(f'Erro ao detectar as peças: { len(position) }')
-        return False
-
     def chat(self, text):
 
         chain = (
@@ -75,3 +59,5 @@ class LLM_model():
             | self._model
         )
         return chain.invoke(text).content
+
+#https://2023-m8-t2-grupo1-vinicioslugli.vercel.app/api/number/get/
