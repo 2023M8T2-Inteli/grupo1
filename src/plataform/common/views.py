@@ -157,11 +157,24 @@ class LogAPI:
 
             for entry in logs_from_database:
                 writer.writerow([entry.requester_name, entry.requester_number, entry.item, entry.category,
-                                 entry.quantity, entry.date.date(), entry.date.time(), entry.Status(entry.status).name])
+                                entry.quantity, entry.date.date(), entry.date.time(), entry.Status(entry.status).name])
 
             return response
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
+    
+    @staticmethod
+    @api_view(['DELETE'])
+    def delete_log(request):
+        if request.method == 'DELETE':
+            data = request.data
+            id = data['id']
+            try:
+                log = Log.objects.get(id=id)
+            except Log.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            log.delete()
+            return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 class AuthorizedNumberAPI:
     @staticmethod
