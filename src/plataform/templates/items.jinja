@@ -118,13 +118,12 @@
 
 {% block script %}
     <script>
-        function createItem(name, x, y, z, image_url) {
+        function createItem(name, x, y, image_url) {
             const url = window.location.origin + '/api/item/create/';
             const data = {
                 item: name,
                 x: x,
                 y: y,
-                z: z,
                 image_url: image_url
             };
 
@@ -170,7 +169,7 @@
             const y = document.getElementById('y-field').value;
             const image_url = document.getElementById('image-field').value;
 
-            createItem(name, x, y, z, image_url);
+            createItem(name, x, y, image_url);
         });
     </script>
 {% endblock script %}
