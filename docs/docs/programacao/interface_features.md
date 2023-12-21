@@ -32,7 +32,7 @@ Abaixo podemos ver a demonstração dessa aplicação funcionando. Cabe ressalta
 <iframe
     width="560"
     height="315"
-    src="https://youtube.com/embed/GCbC0hbbiTQ"
+    src="https://youtube.com/embed/wTsbxawsgzU"
     frameborder="0"
     allow="autoplay; encrypted-media"
     allowfullscreen>
@@ -45,7 +45,6 @@ Abaixo estão listadas as tecnologias utilizadas para concepção da ferramenta 
 | --------------- | ------------------------------------- | ----------------------------------------------- | 
 | Django          | Framework web em python             | ![Django Icon](https://skillicons.dev/icons?i=django)          | 
 | PostgreSQL      | Banco de dados estruturado (SQL)     | ![PostgreSQL Icon](https://skillicons.dev/icons?i=postgres)  | 
-| OpenAI API      | API          | ![OpenAI Icon](https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg)          | 
 | Tailwind CSS    | Framework de CSS           | ![Tailwind CSS Icon](https://skillicons.dev/icons?i=tailwind)| 
 | Flowbite        | Framework de CSS leve| ![Flowbite Icon](https://flowbite.com/images/logo.svg)      | 
 

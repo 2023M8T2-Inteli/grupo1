@@ -29,6 +29,7 @@ urlpatterns = [
     path('api/logs/create/', LogAPI.create_log, name='create_log'),
     path('api/logs/status/', LogAPI.update_status, name='update_status'),
     path('api/logs/csv/', LogAPI.get_csv_file, name='get_csv_file'),
+    path('api/logs/delete/', LogAPI.delete_log, name='delete_log'),
 
     path('api/number/create/', AuthorizedNumberAPI.create_autorized_number, name='create_autorized_number'),
     path('api/number/get/', AuthorizedNumberAPI.get_all_autorized_number, name='get_all_autorized_number'),
