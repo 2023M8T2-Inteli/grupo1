@@ -27,7 +27,7 @@ class ChatBotModel():
         and vectorizes them
         """
         loader = DirectoryLoader('../', 
-                                glob='**/*.txt',
+                                glob='**/teste.txt',
                                 loader_cls=TextLoader,
                                 show_progress=True
                             )
