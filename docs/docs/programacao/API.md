@@ -101,7 +101,7 @@ Retorna o código 200 (OK) em caso de sucesso na exclusão do número, caso o n�
 
 ```json
 {
-	"name": "Nome do Item",
+	"item": "Nome do Item",
 	"x": 0.0,
 	"y": 0.0,
 	"z": 0.0,

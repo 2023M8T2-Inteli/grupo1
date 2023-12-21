@@ -33,7 +33,7 @@ Este comando permitira que o controle do robô seja feito localmente, através d
     allowfullscreen>
 </iframe>
 
-3. Em um novo terminal, o usuário deverá executar os comandos abaixo para iniciar o ROS2 no computado.
+3. Em um novo terminal, o usuário deverá executar os comandos abaixo para iniciar o ROS2 no computador.
 
 ```bash
 ros2 run turtlebot3_teleop teleop_keyboard
