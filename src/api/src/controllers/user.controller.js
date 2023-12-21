@@ -50,6 +50,7 @@ const manager = async (msg, client,publish) =>{
             });
 
             var stt = './src/robot_api/stt.py'
+            //console.log(path.join(__dirname,'../','robot_api/stt.py'))
             var spawn = require("child_process").spawn;
             var process = spawn('python3',[stt,
             ""] );

@@ -36,11 +36,11 @@ client.on('ready', () => {
 
 //message_create
 client.on('message_create', async msg => {
-    console.log(msg.from, msg.body)
+    //console.log(msg.from, msg.body)
     if (msg.to == process.env.BOT_NUMBER){
         chat_instance.number = msg.from
         user.manager(msg, client, publisher)
-        console.log("aaaa")
+        //console.log("aaaa")
     }
     // chat_instance.number = msg.from
     // user.manager(msg, client, publisher)
