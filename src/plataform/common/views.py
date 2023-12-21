@@ -41,6 +41,7 @@ class LogsView(TemplateView):
 
         context['logs'] = [
             {
+                "id": entry.id,
                 "user": {
                     "name": entry.requester_name,
                     "number": Utils.format_number(entry.requester_number)
@@ -161,7 +162,7 @@ class LogAPI:
 
             return response
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-    
+
     @staticmethod
     @api_view(['DELETE'])
     def delete_log(request):
@@ -175,6 +176,7 @@ class LogAPI:
             log.delete()
             return Response(status=status.HTTP_200_OK)
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
 
 class AuthorizedNumberAPI:
     @staticmethod
