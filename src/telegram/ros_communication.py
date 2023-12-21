@@ -17,6 +17,25 @@ class Talker:
         self.talker.publish(roslibpy.Message({'data': message}))
     def close(self):
         self.talker.unadvertise()
-        self.client.terminate()
+    
 
 
+class Listener: 
+    def __init__(self,topic,message_type='std_msgs/String',callback=None):
+        self.listener = roslibpy.Topic(client, f'/{topic}', message_type)
+        self.listener.subscribe(self.callback)
+        self.callback_function = callback
+    def callback(self,message):
+        self.callback_function(message['data'])
+    def close(self):
+        self.listener.unsubscribe()
+
+
+
+
+if __name__ == "__main__":
+    talker = Talker('chatbot_topic')
+    listener = Listener('chatbot_topic',callback=print)
+    while True:
+        talker.send("hello world")
+    

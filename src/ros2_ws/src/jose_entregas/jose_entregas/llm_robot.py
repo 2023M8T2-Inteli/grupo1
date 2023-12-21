@@ -11,6 +11,7 @@ class Robot(Node):
         super().__init__('robot_node')
         self.nav = nav
         self.queue = []
+        self.extra_queue = []
         self._subscriber = self.create_subscription(
             String,
             'chatbot_topic',
@@ -30,17 +31,19 @@ class Robot(Node):
        
         self._logger.warning('Passing data to navigation controller')
         if msg.data == "run":
-            if self.nav.isTaskComplete():
-                self.queue=sort_points(self.queue)
-                move_to(self,self.nav)  
-            else:
-                message = String()
-                message.data = "i am busy"
+            self.queue.extend(self.extra_queue)
+            self.extra_queue.clear()
+            self.queue=sort_points(self.queue)
+            move_to(self,self.nav)  
 
-                self.feedback.publish(message)
+            
+
                 
         else:
-            self.queue.append([float(s) for s in msg.data.split(',')])
+            if self.nav.isTaskComplete():
+                self.queue.append([float(s) for s in msg.data.split(',')])
+            else :
+                self.extra_queue.append([float(s) for s in msg.data.split(',')])
 
         
 

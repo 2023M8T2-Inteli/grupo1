@@ -11,17 +11,10 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 def generate_launch_description():
     
     map = input("Enter the map name: ")
-
+    simulation = input("Enter 1 for simulation or 0 for real robot: ")
     saved_map = IncludeLaunchDescription(PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('turtlebot3_navigation2'), 'launch'), '/navigation2.launch.py']), launch_arguments={'use_sim_time': 'False', 'map':f'../maps/{map}.yaml'}.items())
 
-    llm = Node(
-            package='chatbot_joseentregas',
-            executable='chatbot',
-            output='screen',
-            prefix= "xterm -e"
-            
-        )
-    
+
     robot_controler = Node(
             package='jose_entregas',
             executable='llm_robot',
@@ -34,13 +27,20 @@ def generate_launch_description():
         '/turtlebot3_world.launch.py'])
         
     )
-
-    return LaunchDescription([
+    if simulation == '1':
+        return LaunchDescription([
         
         saved_map,
-        # turtlesim_world_1,
+        turtlesim_world_1,
         robot_controler
     ])
+    else:
+
+        return LaunchDescription([
+            
+            saved_map,
+            robot_controler
+        ])
 
 #ros2 launch nav2_bringup bringup_launch.py use_sim_time:=False autostart:=False map:=path/to/map.yaml
 if __name__ == '__main__':

@@ -47,17 +47,17 @@ def move_to(self,nav)-> None:
     positions= [create_pose_stamped(position[0],position[1],0.0,nav) for position in positions]
     nav.followWaypoints(positions)
     message = String()
-    # message.data = "i am going to point " + str(positions)
-    # self.feedback.publish(message)
+  
     while not nav.isTaskComplete():
-        message.data = str(nav.getFeedback())
-        self.feedback.publish(message)
-        # print(nav.get_clock().now().to_msg().sec)
+        self._logger.info(str(positions))
+      
         pass
         
     message = String()
     message.data = "i am done"
     self.feedback.publish(message)
+    
+    self.queue.clear()
 def sort_points(points)-> list:
 
     points = [[0.0,0.0]] + points
@@ -80,3 +80,4 @@ def sort_points(points)-> list:
     sorted_points.append(sorted_points.pop(0))
     
     return sorted_points
+

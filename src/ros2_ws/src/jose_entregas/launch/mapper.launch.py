@@ -13,7 +13,7 @@ from launch.event_handlers import ( OnProcessExit)
 
 def generate_launch_description():
     map_name = input("Enter the map name: ")
-
+    simulation = input("Enter 1 for simulation or 0 for real robot: ")
     turtlesim_world_1 = IncludeLaunchDescription(
     PythonLaunchDescriptionSource([os.path.join(
         get_package_share_directory('turtlebot3_gazebo'), 'launch'),
@@ -54,15 +54,25 @@ def generate_launch_description():
 
         
    
-       
-    return LaunchDescription([
-        teleop,
+    if simulation == '1':
+        return LaunchDescription([
+        turtlesim_world_1,
         mapper,
+        teleop,
         teleop_close_event
     ],
     
         )
-    
+    else :
+
+        return LaunchDescription([
+            teleop,
+            mapper,
+            teleop_close_event
+        ],
+        
+            )
+        
     
     
     
