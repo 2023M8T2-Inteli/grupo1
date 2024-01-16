@@ -21,6 +21,17 @@
 
 O objetivo deste projeto é desenvolver um robô autonomo conectado a IA, assim o usuário faz uma requisição e o robô vai buscar a peça. Visando simplificar a gestão do almoxarifado da Cervejaria Ambev. Espera-se uma redução no tempo de separação de peças, bem como na diminuição de erros de estoque.
 
+## 📁 Estrutura de Pastas
+
+Este repositório contém várias pastas e arquivos importantes. Aqui está um resumo de cada um deles:
+
+- `README.md`: Este arquivo serve como um guia e explicação geral sobre o projeto. É o documento que você está lendo agora.
+
+- `docs`: Neste diretório há toda a documentação do desenvolvimento do projeto e outros arquivos relacionados a documentação.
+
+- `src`: Pasta que contém o código-fonte do projeto. Aqui você encontrará todos os scripts e arquivos de código necessários para executar e entender o funcionamento do projeto.
+
+
 ## Documentação
 
   Confira nossa documentação no botão abaixo:
